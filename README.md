@@ -61,15 +61,14 @@ ClinicalTrials.gov provides structured but deeply nested data. A document model 
 ### Background Readings
 Located in `background_reading/`
 
-### Readings Summary Table
+## Readings Summary Table
 | Title | Description | Link |
 |------|-------------|------|
-| API Overview | How data is collected | [`background_reading/01_clinicaltrials_api_notes.md`](background_reading/01_clinicaltrials_api_notes.md) |
-| Trial Phases | Meaning of phases | [`background_reading/02_trial_phase_background.md`](background_reading/02_trial_phase_background.md) |
-| Status Definitions | Recruitment states | [`background_reading/03_trial_status_background.md`](background_reading/03_trial_status_background.md) |
-| Enrollment Notes | Estimated vs actual | [`background_reading/04_enrollment_field_notes.md`](background_reading/04_enrollment_field_notes.md) |
-| Bias Notes | Limitations of registry data | [`background_reading/05_registry_bias_limitations.md`](background_reading/05_registry_bias_limitations.md) |
-
+| Analysis of Data from Multiclinic Trial | Discusses how clinical trial data is analyzed across multiple sites and the challenges of combining trial data. | [`Analysis of Data from Multiclinic Trial.pdf`](background_reading/Analysis%20of%20Data%20from%20Multiclinic%20Trial.pdf) |
+| Clinical Trial Participation _ FDA | Explains clinical trial participation and why representativeness matters for health equity. | [`Clinical Trial Participation _ FDA.pdf`](background_reading/Clinical%20Trial%20Participation%20_%20FDA.pdf) |
+| Machine learning for clinical trials in the era of COVID-19 | Explores how machine learning can support clinical trial design, missing data handling, and adaptive trial decisions. | [`Machine learning for clinical trials in the era of COVID-19.pdf`](background_reading/Machine%20learning%20for%20clinical%20trials%20in%20the%20era%20of%20COVID-19.pdf) |
+| Machine Learning Predicts Outcomes of Phase III Clinical Trials for Prostate Cancer | Shows how machine learning can predict clinical trial outcomes using merged clinical trial datasets. | [`Machine Learning Predicts Outcomes of Phase III Clinical Trials for Prostate Cancer.pdf`](background_reading/Machine%20Learning%20Predicts%20Outcomes%20of%20Phase%20III%20Clinical%20Trials%20for%20Prostate%20Cancer.pdf) |
+| Randomized Clinical Trials of Machine Learning Interventions in Health Care A Systematic Review | Reviews ML-based clinical trials and highlights issues with reporting, bias, transparency, and generalizability. | [`Randomized Clinical Trials of Machine Learning Interventions in Health Care A Systematic Review.pdf`](background_reading/Randomized%20Clinical%20Trials%20of%20Machine%20Learning%20Interventions%20in%20Health%20Care%20A%20Systematic%20Review.pdf) |
 ---
 
 ## Data Creation
@@ -137,12 +136,21 @@ Each document represents one trial:
 | `num_interventions` | int | Count of interventions |
 | `num_conditions` | int | Count of conditions |
 
-### Uncertainty Quantification
-| Feature | Uncertainty |
-|--------|------------|
-| Enrollment | Often estimated |
-| Status | Changes over time |
-| Completion | Many trials still ongoing |
+### Data Dictionary: Quantification of Uncertainty (Numerical)
+
+| Feature | Metric | Value | Interpretation |
+|--------|--------|------|---------------|
+| `enrollment_count` | % missing | 0% | All trials contain an enrollment value, but many are estimates rather than actual counts. |
+| `enrollment_count` | % estimated (vs actual) | ~100% | Nearly all enrollment values are reported as estimated, introducing uncertainty in final trial size. |
+| `trial_duration_days` | % missing | ~30% | Missing when completion date is not yet available (ongoing trials). |
+| `trial_duration_days` | Std Dev | High (~800+ days) | Large variability reflects wide differences in trial timelines. |
+| `num_interventions` | Std Dev | ~1.5 | Moderate variability in study complexity across trials. |
+| `num_primary_outcomes` | Std Dev | ~1.8 | Variation in how trials define success metrics. |
+| `num_secondary_outcomes` | Std Dev | ~6.7 | High variability indicates inconsistent reporting of secondary measures. |
+| `num_conditions` | Std Dev | ~1.9 | Most trials focus on 1–2 conditions, but some are multi-condition studies. |
+| `minimum_age` | % missing | ~1.5% | Small number of trials do not report age requirements. |
+| `overall_status` | % "Active" | ~82% | Most trials are still ongoing, introducing temporal bias. |
+| `is_completed` | Class imbalance | ~12% completed | Strong imbalance impacts model performance and interpretation. |
 
 ---
 
