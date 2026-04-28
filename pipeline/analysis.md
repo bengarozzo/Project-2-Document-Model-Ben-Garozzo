@@ -1,38 +1,83 @@
-# DS 4320 Project 2 Analysis: Clinical Drug Trials (2024–2025)
+# DS 4320 Project 2 Analysis: Clinical Trial Completion (2024–2025)
 
 ## Goal
-Analyze recent (2024–2025) clinical drug trials by **phase**, **status**, **enrollment**, **condition**, **sponsor**, and **results/outcomes availability** using a MongoDB document database built from ClinicalTrials.gov API data.
 
-## Data source and storage
+Analyze recent (2024–2025) clinical trials to identify which characteristics are associated with **trial completion** using a MongoDB document database and a predictive model.
+
+## Data Source and Storage
+
 - Source: ClinicalTrials.gov API (public registry)
-- Storage: MongoDB Atlas collection `clinical_trials`
-- Local artifacts:
+- Storage: MongoDB Atlas
+  - Collections:
+    - `raw_clinical_trials`
+    - `clean_clinical_trials`
+- Local artifacts (not stored in GitHub):
   - Raw pull: `data/raw_clinical_trials_2024_2025.json`
-  - Cleaned documents: `data/clean_clinical_trials_2024_2025.json`
+  - Cleaned data: `data/clean_clinical_trials_2024_2025.json`
 
-## Document model (high level)
-Each document represents one trial (`nct_id`) and preserves nested structures:
+## Document Model (High Level)
+
+Each document represents one trial (`nct_id`) and preserves nested structure:
+
 - `phases[]`, `conditions[]`
-- `status.overall_status`, `enrollment.count`, `enrollment.type`
-- `sponsor.lead.{name,class}`
-- `results.has_results`
-- `outcomes.primary[]` (when present)
+- `overall_status`
+- `enrollment_count`, `enrollment_type`
+- `lead_sponsor`, `lead_sponsor_class`
+- `interventions[]`, `outcomes[]`
+- derived features:
+  - `num_interventions`
+  - `num_conditions`
+  - `num_primary_outcomes`
+  - `num_secondary_outcomes`
 
 ## Methods
-1. Query MongoDB into a pandas DataFrame with selected nested fields.
-2. Standardize categorical fields (phase/status) and validate enrollment as numeric where possible.
-3. Compute descriptive summaries:
-   - Counts by phase and overall status
-   - Enrollment distributions by phase
-   - Sponsor class distribution by phase/status
-   - Results posted rates by phase/status
-4. Produce publication-quality figures saved to `docs/`.
 
-## Key figures
-- `docs/trial_status_by_phase.png`: trial status composition across phases
-- `docs/enrollment_by_phase.png`: enrollment distribution by phase
+1. Query MongoDB data into a pandas DataFrame.
+2. Clean and standardize fields (phase, status, enrollment).
+3. Create derived variables:
+  - `status_group` (Active, Completed, Stopped)
+  - `phase_group` (Early, Mid, Late, Post)
+  - `trial_duration_days` (when available)
+4. Build a logistic regression model to estimate the probability that a trial is completed.
+5. Evaluate model performance using accuracy, confusion matrix, and ROC AUC.
+6. Generate an interactive visualization linking model predictions to trial characteristics.
 
-## Reproducibility notes
-- MongoDB credentials are **not** stored in this repository.
-- Set `MONGODB_URI` in your environment (or a local `.env` file ignored by git).
+## Model Summary
 
+- Model: Logistic Regression (with class balancing)
+- Target: `is_completed`
+- Features:
+  - enrollment size
+  - phase group
+  - sponsor type
+  - study complexity (interventions, outcomes, conditions)
+- Performance:
+  - Accuracy: ~0.68
+  - ROC AUC: ~0.81
+- Interpretation:
+  - Smaller, simpler trials are more likely to complete
+  - Larger, more complex trials tend to remain active
+  - No single feature determines completion
+
+## Key Visualization
+
+- `docs/model_completion_probability_dashboard.html`
+
+This interactive chart shows:
+
+- Enrollment size vs predicted completion probability
+- Actual completion status
+- Differences across conditions and study designs
+
+## Key Insight
+
+Trial completion is strongly associated with **study size and complexity**. Smaller trials tend to complete more quickly, while larger trials are more likely to remain active due to longer timelines.
+
+## Reproducibility Notes
+
+- MongoDB credentials are not stored in this repository
+- Set `MONGO_URI` in your environment or `.env` file
+- Run:
+  - `load_trials.py` → pull and load data
+  - `clean_trials.py` → clean and structure data
+  - `analysis.ipynb` → run analysis and model
