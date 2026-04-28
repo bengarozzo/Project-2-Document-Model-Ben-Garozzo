@@ -76,13 +76,13 @@ Located in `background_reading/`
 Data was collected from the ClinicalTrials.gov API for interventional studies from 2024–2025. Raw JSON responses were stored and then cleaned to extract relevant fields while preserving nested structure. Cleaned documents were inserted into MongoDB Atlas.
 
 ### Code Table
-| File | Description |
-|------|-------------|
-| `pipeline/load_trials.py` | Pulls and loads raw data into MongoDB |
-| `pipeline/clean_trials.py` | Cleans and standardizes data |
-| `pipeline/analysis.ipynb` | Performs analysis and modeling |
-| `mongosh/setup_collection.js` | Creates indexes |
-| `mongosh/sample_queries.js` | Example queries |
+| File | Description | Link |
+|------|-------------|------|
+| `pipeline/load_trials.py` | Pulls and loads raw data into MongoDB | [`pipeline/load_trials.py`](pipeline/load_trials.py) |
+| `pipeline/clean_trials.py` | Cleans and standardizes data | [`pipeline/clean_trials.py`](pipeline/clean_trials.py) |
+| `pipeline/analysis.ipynb` | Performs analysis and modeling | [`pipeline/analysis.ipynb`](pipeline/analysis.ipynb) |
+| `mongosh/setup_collection.js` | Creates indexes | [`mongosh/setup_collection.js`](mongosh/setup_collection.js) |
+| `mongosh/sample_queries.js` | Example queries | [`mongosh/sample_queries.js`](mongosh/sample_queries.js) |
 
 ### Rationale for Decisions
 - Document model preserves nested structure
@@ -125,32 +125,75 @@ Each document represents one trial:
 | Storage | MongoDB Atlas |
 | Unit | One document per trial |
 
-### Data Dictionary (partial)
-| Feature | Type | Description |
-|--------|------|-------------|
-| `nct_id` | string | Trial ID |
-| `source_condition` | string | Condition group |
-| `overall_status` | string | Trial status |
-| `phase` | string | Trial phase |
-| `enrollment_count` | int | Number of participants |
-| `num_interventions` | int | Count of interventions |
-| `num_conditions` | int | Count of conditions |
+### Data Dictionary
 
-### Data Dictionary: Quantification of Uncertainty (Numerical)
+| Feature | Type | Description | Example |
+|--------|------|-------------|---------|
+| `nct_id` | object | Unique identifier for each clinical trial | "NCT07168200" |
+| `brief_title` | object | Short title of the trial | "A Phase III Clinical Study..." |
+| `official_title` | object | Full descriptive title of the trial | "A Randomized, Controlled..." |
+| `source_condition` | object | Broad condition category used for grouping | "cancer" |
+| `overall_status` | object | Current trial status | "RECRUITING" |
+| `start_date` | object | Trial start date | "2025-10-17" |
+| `primary_completion_date` | object | Expected or actual primary completion date | "2028-04" |
+| `completion_date` | object | Expected or actual full completion date | "2028-12" |
+| `study_type` | object | Type of study | "INTERVENTIONAL" |
+| `phases` | object | List of trial phases | ["PHASE3"] |
+| `enrollment_count` | int64 | Number of participants in the trial | 720 |
+| `enrollment_type` | object | Indicates if enrollment is estimated or actual | "ESTIMATED" |
+| `conditions` | object | List of conditions studied | ["Cervical Cancer"] |
+| `keywords` | object | Keywords associated with the study | ["immunotherapy"] |
+| `lead_sponsor` | object | Name of the lead sponsor | "NIH" |
+| `lead_sponsor_class` | object | Sponsor type classification | "INDUSTRY" |
+| `brief_summary` | object | Short summary of the trial | "This study evaluates..." |
+| `interventions` | object | List of interventions in the trial | [{...}] |
+| `arm_groups` | object | Study arms or treatment groups | [{...}] |
+| `primary_outcomes` | object | Primary outcome measures | [{...}] |
+| `secondary_outcomes` | object | Secondary outcome measures | [{...}] |
+| `num_interventions` | int64 | Number of interventions | 2 |
+| `num_arm_groups` | int64 | Number of study arms | 2 |
+| `num_primary_outcomes` | int64 | Number of primary outcomes | 1 |
+| `num_secondary_outcomes` | int64 | Number of secondary outcomes | 6 |
+| `num_conditions` | int64 | Number of conditions studied | 1 |
+| `healthy_volunteers` | bool | Whether healthy volunteers are allowed | False |
+| `sex` | object | Eligible participant sex | "ALL" |
+| `minimum_age` | object | Minimum participant age | "18 Years" |
+| `is_fda_regulated_drug` | bool | Whether the trial involves an FDA-regulated drug | False |
+| `is_fda_regulated_device` | bool | Whether the trial involves an FDA-regulated device | False |
+| `has_results` | bool | Whether results have been reported | False |
+
+### Data Dictionary: Quantification of Uncertainty for Numerical Features
 
 | Feature | Metric | Value | Interpretation |
-|--------|--------|------|---------------|
-| `enrollment_count` | % missing | 0% | All trials contain an enrollment value, but many are estimates rather than actual counts. |
-| `enrollment_count` | % estimated (vs actual) | ~100% | Nearly all enrollment values are reported as estimated, introducing uncertainty in final trial size. |
-| `trial_duration_days` | % missing | ~30% | Missing when completion date is not yet available (ongoing trials). |
-| `trial_duration_days` | Std Dev | High (~800+ days) | Large variability reflects wide differences in trial timelines. |
-| `num_interventions` | Std Dev | ~1.5 | Moderate variability in study complexity across trials. |
-| `num_primary_outcomes` | Std Dev | ~1.8 | Variation in how trials define success metrics. |
-| `num_secondary_outcomes` | Std Dev | ~6.7 | High variability indicates inconsistent reporting of secondary measures. |
-| `num_conditions` | Std Dev | ~1.9 | Most trials focus on 1–2 conditions, but some are multi-condition studies. |
-| `minimum_age` | % missing | ~1.5% | Small number of trials do not report age requirements. |
-| `overall_status` | % "Active" | ~82% | Most trials are still ongoing, introducing temporal bias. |
-| `is_completed` | Class imbalance | ~12% completed | Strong imbalance impacts model performance and interpretation. |
+|--------|--------|------:|----------------|
+| `enrollment_count` | Missing values | 0 / 1476 = 0.0% | All trials contain enrollment values, but these are often estimated. |
+| `enrollment_count` | Mean | 216.0 | Mean is much higher than median due to large outlier trials. |
+| `enrollment_count` | Median | 80.5 | Typical trial size is relatively small. |
+| `enrollment_count` | Standard deviation | 800.0 | High variability indicates wide differences in study scale. |
+| `enrollment_count` | Maximum | 18000 | Extreme outliers introduce uncertainty in averages. |
+| `trial_duration_days` | Missing values | 443 / 1476 = 30.0% | Missing duration mainly from ongoing trials. |
+| `trial_duration_days` | Median | 1141 | Represents typical planned duration among completed/planned trials. |
+| `num_interventions` | Mean | 2.29 | Most trials involve 1–3 interventions. |
+| `num_interventions` | Standard deviation | 1.49 | Moderate variation in study complexity. |
+| `num_primary_outcomes` | Mean | 1.81 | Most trials define one main outcome. |
+| `num_primary_outcomes` | Standard deviation | 1.87 | Some trials define multiple primary endpoints. |
+| `num_secondary_outcomes` | Mean | 6.36 | Trials often track multiple secondary outcomes. |
+| `num_secondary_outcomes` | Standard deviation | 6.72 | High variability indicates inconsistent reporting. |
+| `num_conditions` | Mean | 2.01 | Most trials focus on one or two conditions. |
+| `num_conditions` | Standard deviation | 1.92 | Some trials include many conditions. |
+| `is_completed` | Completed trials | 181 / 1476 = 12.3% | Strong class imbalance due to recent dataset (most trials still active). |
+
+These numerical summaries show that uncertainty in this dataset is driven primarily by missing completion information and highly variable enrollment sizes, both of which are a result of using a recent (2024–2025) trial cohort.
+
+### Engineered Features
+
+| Feature | Type | Description | Example |
+|--------|------|-------------|---------|
+| `status_group` | object | Simplified trial status (Active, Completed, Stopped, Unknown) | "Active" |
+| `phase` | object | Primary phase extracted from phases list | "PHASE3" |
+| `phase_group` | object | Grouped phase category (Early, Mid, Late, Post, Unknown) | "Late" |
+| `trial_duration_days` | float | Duration between start and completion dates | 1141 |
+| `is_completed` | int64 | Binary target variable (1 = completed, 0 = not completed) | 1 |
 
 ---
 
@@ -174,7 +217,7 @@ A logistic regression model predicts whether a trial is completed using:
 - study complexity features
 
 ### Analysis Rationale
-The goal is not to predict future outcomes, but to identify patterns associated with early completion. The model is interpretable and highlights structural relationships in the data.
+This project frames trial completion as a binary classification problem. Logistic regression is used because it is interpretable and allows direct understanding of how trial characteristics influence completion probability. The goal is not to maximize prediction accuracy, but to identify meaningful relationships between study design and outcomes.
 
 ### Visualization
 - Interactive Plotly dashboard (`docs/model_completion_probability_dashboard.html`)
