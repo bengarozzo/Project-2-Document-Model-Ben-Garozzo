@@ -10,7 +10,7 @@ Ben Garozzo
 huk5pd
 
 ## DOI
-[ADD BEFORE SUBMISSION]
+https://doi.org/10.5281/zenodo.19868760
 
 ## Press Release
 [`press_release.md`](press_release.md)
