@@ -1,0 +1,8 @@
+requests
+pymongo
+pandas
+matplotlib
+seaborn
+scikit-learn
+python-dotenv
+

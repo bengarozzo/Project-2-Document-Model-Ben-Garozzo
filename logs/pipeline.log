@@ -1,0 +1,121 @@
+2026-04-28 11:52:00 - INFO - Pipeline scaffold initialized.
+
+2026-04-28 15:39:23,965 - INFO - Starting raw clinical trials pull
+2026-04-28 15:39:24,813 - INFO - cancer: pulled 100 this batch, 100 total
+2026-04-28 15:39:25,052 - INFO - cancer: pulled 100 this batch, 200 total
+2026-04-28 15:39:25,285 - INFO - cancer: pulled 100 this batch, 300 total
+2026-04-28 15:39:25,538 - INFO - cancer: pulled 100 this batch, 400 total
+2026-04-28 15:39:25,771 - INFO - cancer: pulled 100 this batch, 500 total
+2026-04-28 15:39:25,992 - INFO - cancer: pulled 100 this batch, 600 total
+2026-04-28 15:39:26,234 - INFO - cancer: pulled 100 this batch, 700 total
+2026-04-28 15:39:26,491 - INFO - cancer: pulled 100 this batch, 800 total
+2026-04-28 15:39:26,708 - INFO - cancer: pulled 100 this batch, 900 total
+2026-04-28 15:39:26,949 - INFO - cancer: pulled 100 this batch, 1000 total
+2026-04-28 15:39:27,202 - INFO - cancer: pulled 100 this batch, 1100 total
+2026-04-28 15:39:27,470 - INFO - cancer: pulled 100 this batch, 1200 total
+2026-04-28 15:39:27,718 - INFO - cancer: pulled 100 this batch, 1300 total
+2026-04-28 15:39:27,969 - INFO - cancer: pulled 100 this batch, 1400 total
+2026-04-28 15:39:28,217 - INFO - cancer: pulled 100 this batch, 1500 total
+2026-04-28 15:39:28,442 - INFO - cancer: pulled 100 this batch, 1600 total
+2026-04-28 15:39:28,693 - INFO - cancer: pulled 100 this batch, 1700 total
+2026-04-28 15:39:29,018 - INFO - cancer: pulled 100 this batch, 1800 total
+2026-04-28 15:39:29,260 - INFO - cancer: pulled 100 this batch, 1900 total
+2026-04-28 15:39:29,646 - INFO - cancer: pulled 100 this batch, 2000 total
+2026-04-28 15:39:29,891 - INFO - cancer: pulled 100 this batch, 2100 total
+2026-04-28 15:39:30,115 - INFO - cancer: pulled 100 this batch, 2200 total
+2026-04-28 15:39:30,339 - INFO - cancer: pulled 100 this batch, 2300 total
+2026-04-28 15:39:30,624 - INFO - cancer: pulled 100 this batch, 2400 total
+2026-04-28 15:39:30,858 - INFO - cancer: pulled 100 this batch, 2500 total
+2026-04-28 15:39:31,075 - INFO - cancer: pulled 100 this batch, 2600 total
+2026-04-28 15:39:31,335 - INFO - cancer: pulled 100 this batch, 2700 total
+2026-04-28 15:39:31,590 - INFO - cancer: pulled 100 this batch, 2800 total
+2026-04-28 15:39:31,823 - INFO - cancer: pulled 100 this batch, 2900 total
+2026-04-28 15:39:32,054 - INFO - cancer: pulled 100 this batch, 3000 total
+2026-04-28 15:39:32,286 - INFO - cancer: pulled 100 this batch, 3100 total
+2026-04-28 15:39:32,540 - INFO - cancer: pulled 100 this batch, 3200 total
+2026-04-28 15:39:32,782 - INFO - cancer: pulled 100 this batch, 3300 total
+2026-04-28 15:39:33,106 - INFO - cancer: pulled 100 this batch, 3400 total
+2026-04-28 15:39:33,348 - INFO - cancer: pulled 100 this batch, 3500 total
+2026-04-28 15:39:33,601 - INFO - cancer: pulled 100 this batch, 3600 total
+2026-04-28 15:39:33,831 - INFO - cancer: pulled 100 this batch, 3700 total
+2026-04-28 15:39:34,160 - INFO - cancer: pulled 100 this batch, 3800 total
+2026-04-28 15:39:34,386 - INFO - cancer: pulled 100 this batch, 3900 total
+2026-04-28 15:39:34,615 - INFO - cancer: pulled 100 this batch, 4000 total
+2026-04-28 15:39:34,832 - INFO - cancer: pulled 100 this batch, 4100 total
+2026-04-28 15:39:35,057 - INFO - cancer: pulled 100 this batch, 4200 total
+2026-04-28 15:39:35,325 - INFO - cancer: pulled 100 this batch, 4300 total
+2026-04-28 15:39:35,561 - INFO - cancer: pulled 100 this batch, 4400 total
+2026-04-28 15:39:35,782 - INFO - cancer: pulled 100 this batch, 4500 total
+2026-04-28 15:39:36,015 - INFO - cancer: pulled 100 this batch, 4600 total
+2026-04-28 15:39:36,280 - INFO - cancer: pulled 100 this batch, 4700 total
+2026-04-28 15:39:36,524 - INFO - cancer: pulled 100 this batch, 4800 total
+2026-04-28 15:39:36,854 - INFO - cancer: pulled 100 this batch, 4900 total
+2026-04-28 15:39:37,153 - INFO - cancer: pulled 100 this batch, 5000 total
+2026-04-28 15:39:37,385 - INFO - cancer: pulled 100 this batch, 5100 total
+2026-04-28 15:39:37,624 - INFO - cancer: pulled 100 this batch, 5200 total
+2026-04-28 15:39:37,859 - INFO - cancer: pulled 100 this batch, 5300 total
+2026-04-28 15:39:38,090 - INFO - cancer: pulled 100 this batch, 5400 total
+2026-04-28 15:39:38,325 - INFO - cancer: pulled 100 this batch, 5500 total
+2026-04-28 15:39:38,700 - INFO - cancer: pulled 100 this batch, 5600 total
+2026-04-28 15:39:38,948 - INFO - cancer: pulled 100 this batch, 5700 total
+2026-04-28 15:39:39,180 - INFO - cancer: pulled 100 this batch, 5800 total
+2026-04-28 15:39:39,409 - INFO - cancer: pulled 100 this batch, 5900 total
+2026-04-28 15:39:39,690 - INFO - cancer: pulled 100 this batch, 6000 total
+2026-04-28 15:39:39,930 - INFO - cancer: pulled 100 this batch, 6100 total
+2026-04-28 15:39:40,140 - INFO - cancer: pulled 100 this batch, 6200 total
+2026-04-28 15:39:40,419 - INFO - cancer: pulled 100 this batch, 6300 total
+2026-04-28 15:39:40,641 - INFO - cancer: pulled 100 this batch, 6400 total
+2026-04-28 15:39:40,864 - INFO - cancer: pulled 100 this batch, 6500 total
+2026-04-28 15:39:41,096 - INFO - cancer: pulled 100 this batch, 6600 total
+2026-04-28 15:39:41,316 - INFO - cancer: pulled 100 this batch, 6700 total
+2026-04-28 15:39:41,542 - INFO - cancer: pulled 100 this batch, 6800 total
+2026-04-28 15:39:41,762 - INFO - cancer: pulled 100 this batch, 6900 total
+2026-04-28 15:39:41,966 - INFO - cancer: pulled 70 this batch, 6970 total
+2026-04-28 15:39:42,193 - INFO - diabetes: pulled 100 this batch, 100 total
+2026-04-28 15:39:42,430 - INFO - diabetes: pulled 100 this batch, 200 total
+2026-04-28 15:39:42,679 - INFO - diabetes: pulled 100 this batch, 300 total
+2026-04-28 15:39:42,926 - INFO - diabetes: pulled 100 this batch, 400 total
+2026-04-28 15:39:43,303 - INFO - diabetes: pulled 100 this batch, 500 total
+2026-04-28 15:39:43,542 - INFO - diabetes: pulled 100 this batch, 600 total
+2026-04-28 15:39:43,720 - INFO - diabetes: pulled 49 this batch, 649 total
+2026-04-28 15:39:43,945 - INFO - heart disease: pulled 100 this batch, 100 total
+2026-04-28 15:39:44,179 - INFO - heart disease: pulled 100 this batch, 200 total
+2026-04-28 15:39:44,432 - INFO - heart disease: pulled 100 this batch, 300 total
+2026-04-28 15:39:44,675 - INFO - heart disease: pulled 100 this batch, 400 total
+2026-04-28 15:39:44,922 - INFO - heart disease: pulled 100 this batch, 500 total
+2026-04-28 15:39:45,151 - INFO - heart disease: pulled 100 this batch, 600 total
+2026-04-28 15:39:45,350 - INFO - heart disease: pulled 78 this batch, 678 total
+2026-04-28 15:39:45,361 - INFO - Total unique raw trials: 8236
+2026-04-28 15:39:50,497 - INFO - Saved raw data to /Users/ben/Project-2-Document-Model-Ben-Garozzo/data/raw_clinical_trials_2024_2025.json
+2026-04-28 15:39:51,867 - INFO - Deleted 0 old raw documents
+2026-04-28 15:40:35,366 - INFO - Inserted 8236 raw documents into MongoDB
+2026-04-28 15:40:35,366 - INFO - Final raw collection count: 8236
+2026-04-28 15:42:35,873 - INFO - Starting clinical trial pull and load process
+2026-04-28 15:42:36,118 - INFO - cancer: pulled 100 this batch, 100 total
+2026-04-28 15:42:36,365 - INFO - cancer: pulled 100 this batch, 200 total
+2026-04-28 15:42:36,569 - INFO - cancer: pulled 100 this batch, 300 total
+2026-04-28 15:42:36,819 - INFO - cancer: pulled 100 this batch, 400 total
+2026-04-28 15:42:37,025 - INFO - cancer: pulled 100 this batch, 500 total
+2026-04-28 15:42:37,373 - INFO - diabetes: pulled 100 this batch, 100 total
+2026-04-28 15:42:37,591 - INFO - diabetes: pulled 100 this batch, 200 total
+2026-04-28 15:42:37,825 - INFO - diabetes: pulled 100 this batch, 300 total
+2026-04-28 15:42:38,047 - INFO - diabetes: pulled 100 this batch, 400 total
+2026-04-28 15:42:38,275 - INFO - diabetes: pulled 100 this batch, 500 total
+2026-04-28 15:42:38,506 - INFO - heart disease: pulled 100 this batch, 100 total
+2026-04-28 15:42:38,755 - INFO - heart disease: pulled 100 this batch, 200 total
+2026-04-28 15:42:38,987 - INFO - heart disease: pulled 100 this batch, 300 total
+2026-04-28 15:42:39,211 - INFO - heart disease: pulled 100 this batch, 400 total
+2026-04-28 15:42:39,465 - INFO - heart disease: pulled 100 this batch, 500 total
+2026-04-28 15:42:39,465 - INFO - Total pulled before deduplication: 1500
+2026-04-28 15:42:39,467 - INFO - Total unique trials after deduplication: 1476
+2026-04-28 15:42:40,299 - INFO - Saved raw data to: /Users/ben/Project-2-Document-Model-Ben-Garozzo/data/raw_clinical_trials_2024_2025.json
+2026-04-28 15:42:41,276 - INFO - Connected to MongoDB
+2026-04-28 15:42:41,924 - INFO - Deleted 8236 existing raw documents
+2026-04-28 15:42:52,074 - INFO - Inserted 1476 raw documents
+2026-04-28 15:42:52,075 - INFO - Final raw collection count: 1476
+2026-04-28 15:42:52,076 - INFO - Clinical trial pull and load process completed successfully
+2026-04-28 15:54:20,300 - INFO - Raw documents found: 1476
+2026-04-28 15:54:21,341 - INFO - Clean documents created: 1476
+2026-04-28 15:54:21,480 - INFO - Saved cleaned data to: /Users/ben/Project-2-Document-Model-Ben-Garozzo/data/clean_clinical_trials_2024_2025.json
+2026-04-28 15:54:28,322 - INFO - Final clean collection count: 1476
+2026-04-28 15:54:28,324 - INFO - Clean trial process completed successfully
