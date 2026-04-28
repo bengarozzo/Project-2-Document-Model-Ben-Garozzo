@@ -69,6 +69,8 @@ Located in `background_reading/`
 | Machine learning for clinical trials in the era of COVID-19 | Explores how machine learning can support clinical trial design, missing data handling, and adaptive trial decisions. | [`Machine learning for clinical trials in the era of COVID-19.pdf`](background_reading/Machine%20learning%20for%20clinical%20trials%20in%20the%20era%20of%20COVID-19.pdf) |
 | Machine Learning Predicts Outcomes of Phase III Clinical Trials for Prostate Cancer | Shows how machine learning can predict clinical trial outcomes using merged clinical trial datasets. | [`Machine Learning Predicts Outcomes of Phase III Clinical Trials for Prostate Cancer.pdf`](background_reading/Machine%20Learning%20Predicts%20Outcomes%20of%20Phase%20III%20Clinical%20Trials%20for%20Prostate%20Cancer.pdf) |
 | Randomized Clinical Trials of Machine Learning Interventions in Health Care A Systematic Review | Reviews ML-based clinical trials and highlights issues with reporting, bias, transparency, and generalizability. | [`Randomized Clinical Trials of Machine Learning Interventions in Health Care A Systematic Review.pdf`](background_reading/Randomized%20Clinical%20Trials%20of%20Machine%20Learning%20Interventions%20in%20Health%20Care%20A%20Systematic%20Review.pdf) |
+
+One drive link: https://myuva-my.sharepoint.com/:f:/g/personal/huk5pd_virginia_edu/IgCV6RZ99vpeT4lbnR52nAbmAXFKi7HyIxFmI1g8vL83MGQ?e=SRMCJY
 ---
 
 ## Data Creation
