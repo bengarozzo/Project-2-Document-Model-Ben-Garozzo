@@ -32,32 +32,44 @@ Each document represents one trial (`nct_id`) and preserves nested structure:
 
 ## Methods
 
-1. Query MongoDB data into a pandas DataFrame.
-2. Clean and standardize fields (phase, status, enrollment).
-3. Create derived variables:
-  - `status_group` (Active, Completed, Stopped)
-  - `phase_group` (Early, Mid, Late, Post)
-  - `trial_duration_days` (when available)
-4. Build a logistic regression model to estimate the probability that a trial is completed.
-5. Evaluate model performance using accuracy, confusion matrix, and ROC AUC.
-6. Generate an interactive visualization linking model predictions to trial characteristics.
+1. Query MongoDB data into a pandas DataFrame.  
+2. Clean and standardize fields (phase, status, enrollment).  
+3. Create derived variables:  
+   - `status_group` (Active, Completed, Stopped)  
+   - `phase_group` (Early, Mid, Late, Post)  
+   - `trial_duration_days` (when available)  
+4. Build a logistic regression model to estimate the probability that a trial is completed.  
+5. Evaluate model performance using accuracy, confusion matrix, and ROC AUC.  
+6. Generate an interactive visualization linking model predictions to trial characteristics.  
+
+## Analysis Rationale
+
+The goal of this analysis is to understand which characteristics of clinical trials are associated with completion. This is framed as a binary classification problem, where each trial is labeled as either completed or not completed.
+
+Logistic regression was chosen as the modeling approach because it is simple, interpretable, and well-suited for binary outcomes. The model allows us to directly examine how each feature influences the probability of completion, which is more useful for this project than maximizing predictive accuracy with more complex models.
+
+The selected features (enrollment size, phase group, sponsor type, and measures of study complexity such as number of interventions and outcomes) were chosen because they are consistently available across trials and reflect key structural aspects of study design. These features align with domain expectations, where larger and more complex trials are typically harder to complete quickly.
+
+Because the dataset only includes trials from 2024–2025, many trials are still ongoing. As a result, the model is not intended to predict long-term outcomes, but rather to identify patterns associated with early completion behavior. This limitation is important and is accounted for when interpreting the results.
 
 ## Model Summary
 
-- Model: Logistic Regression (with class balancing)
-- Target: `is_completed`
+- Model: Logistic Regression (with class balancing)  
+- Target: `is_completed`  
 - Features:
-  - enrollment size
-  - phase group
-  - sponsor type
-  - study complexity (interventions, outcomes, conditions)
+  - enrollment size  
+  - phase group  
+  - sponsor type  
+  - study complexity (interventions, outcomes, conditions)  
 - Performance:
-  - Accuracy: ~0.68
-  - ROC AUC: ~0.81
-- Interpretation:
-  - Smaller, simpler trials are more likely to complete
-  - Larger, more complex trials tend to remain active
-  - No single feature determines completion
+  - Accuracy: ~0.68  
+  - ROC AUC: ~0.81  
+
+## Interpretation
+
+- Smaller, simpler trials are more likely to complete  
+- Larger, more complex trials tend to remain active  
+- No single feature determines completion  
 
 ## Key Visualization
 
@@ -65,9 +77,15 @@ Each document represents one trial (`nct_id`) and preserves nested structure:
 
 This interactive chart shows:
 
-- Enrollment size vs predicted completion probability
-- Actual completion status
-- Differences across conditions and study designs
+- Enrollment size vs predicted completion probability  
+- Actual completion status  
+- Differences across conditions and study designs  
+
+## Visualization Rationale
+
+The interactive visualization was designed to directly connect model predictions with real trial characteristics. A scatter-based layout allows users to see how enrollment size relates to predicted completion probability, while color encoding distinguishes between completed and ongoing trials. Interactivity enables exploration across different conditions and study designs without overwhelming the user with static plots.
+
+This approach was chosen over multiple static charts because it provides a more comprehensive and intuitive view of the relationship between model predictions and underlying data.
 
 ## Key Insight
 
@@ -75,9 +93,9 @@ Trial completion is strongly associated with **study size and complexity**. Smal
 
 ## Reproducibility Notes
 
-- MongoDB credentials are not stored in this repository
-- Set `MONGO_URI` in your environment or `.env` file
+- MongoDB credentials are not stored in this repository  
+- Set `MONGO_URI` in your environment or `.env` file  
 - Run:
-  - `load_trials.py` → pull and load data
-  - `clean_trials.py` → clean and structure data
-  - `analysis.ipynb` → run analysis and model
+  - `load_trials.py` → pull and load data  
+  - `clean_trials.py` → clean and structure data  
+  - `analysis.ipynb` → run analysis and model  
